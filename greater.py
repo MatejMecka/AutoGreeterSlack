@@ -22,11 +22,16 @@ if sc.rtm_connect():
         for slack_message in sc.rtm_read():
             logger.info(slack_message)
             message = slack_message.get("type")
+            channelslack = slack_message.get("channel")
             user = slack_message.get("user")
             if not message or not user:
                 continue
             if message == "member_joined_channel":
-                sc.api_call("chat.postMessage",channel=user,as_user=True,text=messagetosend)
+                sc.api_call("chat.postMessage",channel=user,as_user=True,text=welcomemessagedm)
+                if welcomemessagechannel == "":
+                    logger.info("No Message specified for channel to post")
+                else:
+                    sc.api_call("chat.postMessage", channel=channelslack, as_user=True, text=welcomemessagechannel)
 
             time.sleep(2)
 
