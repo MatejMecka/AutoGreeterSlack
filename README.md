@@ -10,7 +10,7 @@ A project that greets membrs that join your Slack Team(Workspace) that was devel
 * Logger
 
 ### Installation
-` pip install requirments.txt`
+` pip install requirements.txt`
 
 ### Getting Started:
 
