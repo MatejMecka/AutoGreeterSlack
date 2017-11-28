@@ -3,6 +3,7 @@ from slackclient import SlackClient
 import time
 import logging
 from config import *
+import sys
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
@@ -16,6 +17,10 @@ handler.setFormatter(formatter)
 logger.addHandler(handler)
 
 sc = SlackClient(slack_token)
+
+if welcomemessagedm == "":
+    logger.error("There wasn't a message specified to inform user. Quitting...")
+    sys.exit(1)
 
 if sc.rtm_connect():
     while True:
